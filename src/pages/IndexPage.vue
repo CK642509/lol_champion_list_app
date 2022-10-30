@@ -1,17 +1,21 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+    <div class="q-pa-md row items-start q-gutter-md" style="width: 80vw">
+      <!-- <div class="row items-start" style="width: 80vw"> -->
+      <ChampionBtn
+        v-for="(item, index) in champion_list"
+        :key="index"
+        :champion="item.name"
+        :showname="false"
+      ></ChampionBtn>
+    </div>
   </q-page>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
+import ChampionBtn from "src/components/ChampionBtn.vue";
+import { champion_list } from "src/assets/champion_list";
 
-export default defineComponent({
-  name: 'IndexPage'
-})
+console.log(champion_list[0].name_chinese);
+console.log(123);
 </script>
