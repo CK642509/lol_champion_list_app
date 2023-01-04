@@ -2,15 +2,10 @@ import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import path from "path";
 import os from "os";
 
-// import { app } from '@electron/remote'
-
-// const filePath = path.join(app.getPath("userData"), "/some.file");
-// console.log(filePath);
-// console.log(1235);
-
 ipcMain.handle("save-data", async (event, record) => {
   try {
     console.log(record);
+    return "OK";
   } catch {
     return "read file error";
   }
@@ -18,20 +13,18 @@ ipcMain.handle("save-data", async (event, record) => {
 
 // below code are generated automatically when setup
 
-// // needed in case process is undefined under Linux
-// const platform = process.platform || os.platform();
+// needed in case process is undefined under Linux
+const platform = process.platform || os.platform();
 
-// try {
-//   if (platform === "win32" && nativeTheme.shouldUseDarkColors === true) {
-//     require("fs").unlinkSync(
-//       path.join(app.getPath("userData"), "DevTools Extensions")
-//     );
-//   }
-// } catch (_) {}
+try {
+  if (platform === "win32" && nativeTheme.shouldUseDarkColors === true) {
+    require("fs").unlinkSync(
+      path.join(app.getPath("userData"), "DevTools Extensions")
+    );
+  }
+} catch (_) {}
 
 let mainWindow;
-
-console.log("main.js", __dirname);
 
 function createWindow() {
   /**

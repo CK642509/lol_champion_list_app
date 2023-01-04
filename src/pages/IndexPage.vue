@@ -25,8 +25,8 @@
 import ChampionBtn from "src/components/ChampionBtn.vue";
 import { champion_list } from "src/assets/champion_list";
 import { ref } from "vue";
-import { ipcRenderer } from "electron";
-// const { ipcRenderer } = window.require("electron");
+
+const { myAPI } = window;
 
 const showname = ref(false);
 let record = Array(161).fill(-1);
@@ -34,6 +34,7 @@ let record = Array(161).fill(-1);
 const updateList = (num) => {
   console.log("qqq", num);
   record[num] = record[num] * -1;
-  ipcRenderer.invoke("save-data", record).then((msg) => console.log(msg));
+  // ipcRenderer.invoke("save-data", record).then((msg) => console.log(msg));
+  myAPI.invoke("save-data", record);
 };
 </script>

@@ -28,10 +28,13 @@
  * }
  */
 
-const { contextBridge, ipcRenderer } = require("electron");
+import { contextBridge, ipcRenderer } from "electron";
 
-window.ipcRenderer = ipcRenderer;
-
-contextBridge.exposeInMainWorld("electron", {
-  ipcRenderer,
+contextBridge.exposeInMainWorld("myAPI", {
+  invoke: (channel, data) => {
+    ipcRenderer.invoke(channel, data).then((msg) => {
+      console.log(msg);
+    });
+  },
+  // test: () => {},
 });
