@@ -2,10 +2,45 @@ import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import path from "path";
 import os from "os";
 
+const fs = require("fs");
+
 ipcMain.handle("save-data", async (event, record) => {
+  const folder_path = path.join(
+    process.env.LOCALAPPDATA,
+    "Programs",
+    "LOL_app"
+  );
+
   try {
     console.log(record);
+    console.log(folder_path);
+
+    if (!fs.existsSync(folder_path)) {
+      fs.mkdirSync(folder_path);
+    }
+    fs.writeFileSync(path.join(folder_path, "record.txt"), record.toString());
+
     return "OK";
+  } catch {
+    return "read file error";
+  }
+});
+
+ipcMain.handle("load-data", async (event) => {
+  const folder_path = path.join(
+    process.env.LOCALAPPDATA,
+    "Programs",
+    "LOL_app"
+  );
+
+  try {
+    console.log(123);
+
+    const record = fs.readFileSync(
+      path.join(folder_path, "record.txt"),
+      "utf-8"
+    );
+    return record;
   } catch {
     return "read file error";
   }
@@ -18,9 +53,7 @@ const platform = process.platform || os.platform();
 
 try {
   if (platform === "win32" && nativeTheme.shouldUseDarkColors === true) {
-    require("fs").unlinkSync(
-      path.join(app.getPath("userData"), "DevTools Extensions")
-    );
+    fs.unlinkSync(path.join(app.getPath("userData"), "DevTools Extensions"));
   }
 } catch (_) {}
 
