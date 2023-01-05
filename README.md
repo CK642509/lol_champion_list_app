@@ -37,7 +37,7 @@ npm run format
 
 ```bash
 quasar build
-quasar dev -m electron
+quasar build -m electron
 ```
 
 ### Customize the configuration
