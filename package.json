@@ -1,6 +1,6 @@
 {
   "name": "lol-champion-list-app",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Quasar Project",
   "productName": "LOL Champion List App",
   "author": "johnlin <john830110@gmail.com>",
@@ -23,6 +23,7 @@
     "@quasar/app-vite": "^1.0.0",
     "autoprefixer": "^10.4.2",
     "electron": "^22.0.0",
+    "electron-builder": "^22.14.13",
     "electron-packager": "^15.5.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
