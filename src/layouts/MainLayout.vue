@@ -40,17 +40,17 @@ import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
-  {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
+  // {
+  //   title: "Docs",
+  //   caption: "quasar.dev",
+  //   icon: "school",
+  //   link: "https://quasar.dev",
+  // },
   {
     title: "Github",
-    caption: "github.com/quasarframework",
+    caption: "source code",
     icon: "code",
-    link: "https://github.com/quasarframework",
+    link: "https://github.com/CK642509/lol_champion_list_app",
   },
 ];
 
