@@ -35,6 +35,8 @@ const props = defineProps({
   showName: Boolean,
   state: Number,
 });
+const isDevelopment = process.env.NODE_ENV !== "production";
+let path;
 
 const emit = defineEmits(["update"]);
 const changeColor = () => {
@@ -61,7 +63,11 @@ const filename = props.champion
   .replaceAll("&", "")
   .replaceAll(".", "");
 
-const path = `src/assets/champion/${filename}.png`;
+if (isDevelopment) {
+  path = `src/assets/champion/${filename}.png`;
+} else {
+  path = `resources/src/assets/champion/${filename}.png`;
+}
 
 onMounted(() => {
   state.value = props.state;
