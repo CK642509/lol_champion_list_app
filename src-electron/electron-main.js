@@ -12,7 +12,6 @@ ipcMain.handle("save-data", async (event, record) => {
   );
 
   try {
-    console.log(record);
     console.log(folder_path);
 
     if (!fs.existsSync(folder_path)) {
@@ -34,14 +33,17 @@ ipcMain.handle("load-data", async (event) => {
   );
 
   try {
-    console.log(123);
+    // console.log("load-data");
 
     const record = fs.readFileSync(
       path.join(folder_path, "record.txt"),
       "utf-8"
     );
-    return record;
+
+    mainWindow.webContents.send("response", record);
+    return "success";
   } catch {
+    mainWindow.webContents.send("response", "read file error");
     return "read file error";
   }
 });

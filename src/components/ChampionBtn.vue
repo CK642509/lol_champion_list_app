@@ -1,7 +1,7 @@
 <template>
-  <div v-if="showname" style="width: 150px">
+  <div v-if="showName" style="width: 150px">
     <q-btn
-      @click="test"
+      @click="select"
       stack
       :color="btnColor"
       :text-color="textColor"
@@ -15,7 +15,7 @@
   </div>
 
   <div v-else>
-    <q-btn @click="test" :color="btnColor" :text-color="textColor">
+    <q-btn @click="select" :color="btnColor" :text-color="textColor">
       <q-avatar size="42px">
         <img :src="path" />
       </q-avatar>
@@ -25,13 +25,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
 const btnColor = ref("white");
 const textColor = ref("black");
+const state = ref(-1);
 const props = defineProps({
   num: Number,
   champion: String,
-  showname: Boolean,
+  showName: Boolean,
+  state: Number,
 });
 
 const emit = defineEmits(["update"]);
@@ -45,11 +47,12 @@ const changeColor = () => {
   }
 };
 
-const test = () => {
-  console.log(props.champion);
-  console.log(props.num);
+const select = () => {
+  console.log(props.champion, props.num);
   emit("update", props.num);
-  changeColor();
+  // changeColor();
+  state.value *= -1;
+  console.log(state.value);
 };
 
 const filename = props.champion
@@ -59,4 +62,13 @@ const filename = props.champion
   .replaceAll(".", "");
 
 const path = `src/assets/champion/${filename}.png`;
+
+onMounted(() => {
+  state.value = props.state;
+});
+
+watch(state, (newVal) => {
+  // console.log("newVal =", newVal);
+  changeColor();
+});
 </script>

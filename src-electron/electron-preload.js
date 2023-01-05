@@ -34,7 +34,10 @@ contextBridge.exposeInMainWorld("myAPI", {
   invoke: (channel, data) => {
     ipcRenderer.invoke(channel, data).then((msg) => {
       console.log(msg);
+      // return msg;
     });
   },
-  // test: () => {},
+  recieve: (channel, func) => {
+    ipcRenderer.on(channel, (event, ...args) => func(args));
+  },
 });
