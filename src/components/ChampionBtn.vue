@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, toRefs } from "vue";
+import { ref, watch, toRefs } from "vue";
 const btnColor = ref("white");
 const textColor = ref("black");
 // const state = ref(-1);
@@ -73,10 +73,6 @@ if (isDevelopment) {
     import.meta.url
   ).href;
 }
-
-// onMounted(() => {
-//   state.value = props.state;
-// });
 
 watch(state, (newVal) => {
   // console.log("newVal =", newVal);
