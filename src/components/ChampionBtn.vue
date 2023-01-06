@@ -21,14 +21,13 @@
       </q-avatar>
     </q-btn>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, toRefs } from "vue";
 const btnColor = ref("white");
 const textColor = ref("black");
-const state = ref(-1);
+// const state = ref(-1);
 const props = defineProps({
   num: Number,
   champion: String,
@@ -36,7 +35,9 @@ const props = defineProps({
   state: Number,
 });
 const isDevelopment = process.env.NODE_ENV !== "production";
-let path;
+
+const path = ref();
+const { state } = toRefs(props);
 
 const emit = defineEmits(["update"]);
 const changeColor = () => {
@@ -64,14 +65,19 @@ const filename = props.champion
   .replaceAll(".", "");
 
 if (isDevelopment) {
-  path = `src/assets/champion/${filename}.png`;
+  path.value = `src/assets/champion/${filename}.png`;
 } else {
-  path = `resources/src/assets/champion/${filename}.png`;
+  // path.value = `${exe_path}/resources/src/assets/champion/${filename}.png`;
+
+  path.value = new URL(
+    `../assets/champion/${filename}.png`,
+    import.meta.url
+  ).href;
 }
 
-onMounted(() => {
-  state.value = props.state;
-});
+// onMounted(() => {
+//   state.value = props.state;
+// });
 
 watch(state, (newVal) => {
   // console.log("newVal =", newVal);

@@ -33,7 +33,7 @@
 <script setup>
 import ChampionBtn from "src/components/ChampionBtn.vue";
 import { champion_list } from "src/assets/champion_list";
-import { ref, nextTick, watch } from "vue";
+import { ref } from "vue";
 
 const { myAPI } = window;
 
@@ -59,11 +59,6 @@ myAPI.recieve("response", async (res) => {
   if (res != "read file error") {
     const data = res[0].split(",").map(Number);
     record.value = data;
-
-    // refresh btns
-    showBtns.value = false;
-    await nextTick();
-    showBtns.value = true;
   }
 });
 </script>
