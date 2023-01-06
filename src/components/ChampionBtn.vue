@@ -54,7 +54,6 @@ const select = () => {
   console.log(props.champion, props.num);
   emit("update", props.num);
   // changeColor();
-  state.value *= -1;
   console.log(state.value);
 };
 
