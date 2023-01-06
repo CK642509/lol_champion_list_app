@@ -1,5 +1,7 @@
 # LOL Champion List App (lol-champion-list-app)
 
+## Vite + Vue3 + Quasar + Electron
+
 A Quasar Project
 
 ## Install the dependencies
