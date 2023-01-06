@@ -8,7 +8,7 @@
       style="width: 150px"
     >
       <q-avatar>
-        <img :src="path" />
+        <q-img :src="path" />
       </q-avatar>
       <a>{{ champion }}</a>
     </q-btn>
@@ -17,7 +17,7 @@
   <div v-else>
     <q-btn @click="select" :color="btnColor" :text-color="textColor">
       <q-avatar size="42px">
-        <img :src="path" />
+        <q-img :src="path" />
       </q-avatar>
     </q-btn>
   </div>
