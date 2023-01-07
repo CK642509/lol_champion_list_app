@@ -4,6 +4,37 @@
 
 A Quasar Project
 
+## TODO List
+
+### 小功能
+
+- 多個分頁
+  - 可以自定義標題
+- 搜尋
+  - 搜尋後只顯示符合的英雄
+- 排版
+
+### 大型功能
+
+- [autoUpdater](https://www.electronjs.org/docs/latest/api/auto-updater)
+  - [config](https://www.electron.build/configuration/publish)
+- ORM
+  - [Sequelize](https://sequelize.org/)
+  - TABLE
+    - champion
+      - name_en: String
+      - name_ch: String
+      - date: Date
+    - page_1
+      - champion: String
+      - state: Boolean
+
+### 夢想功能
+
+- 截圖遊戲客戶端畫面，自動判斷有哪些英雄需要被選取
+
+---
+
 ## Install the dependencies
 
 ```bash
