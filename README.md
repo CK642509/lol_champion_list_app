@@ -21,13 +21,17 @@ A Quasar Project
 - ORM
   - [Sequelize](https://sequelize.org/)
   - TABLE
-    - champion
+    - champions
+      - id: Int
       - name_en: String
       - name_ch: String
       - date: Date
-    - page_1
+    - record
       - champion: String
       - state: Boolean
+    - pages
+      - id: Int
+      - title: String
 
 ### 夢想功能
 
