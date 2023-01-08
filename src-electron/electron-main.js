@@ -1,6 +1,7 @@
 import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import path from "path";
 import os from "os";
+import { init_db } from "../src/utils/sequelize";
 
 const fs = require("fs");
 
@@ -94,7 +95,10 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
+  init_db(path.join(process.env.LOCALAPPDATA, "Programs", "LOL_app"));
+});
 
 app.on("window-all-closed", () => {
   if (platform !== "darwin") {
