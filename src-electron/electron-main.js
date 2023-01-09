@@ -1,7 +1,7 @@
 import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import path from "path";
 import os from "os";
-import { init_db } from "../src/utils/sequelize";
+import { init_db, init_champ, init_page } from "../src/utils/sequelize";
 
 const fs = require("fs");
 
@@ -98,6 +98,8 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
   init_db(path.join(process.env.LOCALAPPDATA, "Programs", "LOL_app"));
+  init_champ();
+  init_page();
 });
 
 app.on("window-all-closed", () => {
