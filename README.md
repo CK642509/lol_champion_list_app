@@ -23,14 +23,18 @@ A Quasar Project
   - TABLE
     - champions
       - id: Int
+        - PK
       - name_en: String
       - name_ch: String
       - date: Date
     - record
+      - champ_id: Int
+        - FK = champions:id
       - champion: String
       - state: Boolean
     - pages
       - id: Int
+        - PK
       - title: String
 
 ### 夢想功能
