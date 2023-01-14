@@ -11,9 +11,10 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> LOL Champion List APP </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
+        <div>v{{ config.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -35,9 +36,20 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from "vue";
+<script setup>
+import { ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import config from "../../package.json";
+
+const leftDrawerOpen = ref(false);
+const essentialLinks = ref([
+  {
+    title: "Github",
+    caption: "source code",
+    icon: "code",
+    link: "https://github.com/CK642509/lol_champion_list_app",
+  },
+]);
 
 const linksList = [
   // {
@@ -54,23 +66,7 @@ const linksList = [
   },
 ];
 
-export default defineComponent({
-  name: "MainLayout",
-
-  components: {
-    EssentialLink,
-  },
-
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
-});
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
 </script>
